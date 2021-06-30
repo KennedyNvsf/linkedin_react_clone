@@ -1,15 +1,17 @@
 import React from 'react';
-// import { Counter } from './features/counter/Counter';
-
 import "./styles/app.scss"
+
+//COMPONENTS
+import HeaderComponent from './components/header.component';
 
 function App() {
   return (
     <div className="app">
-      <h1>Building linkedin clone</h1>
+      
 
       {/*header*/}
-      
+      <HeaderComponent/>
+
       {/*App body*/}
         {/*sidebar*/}
         {/*Feed*/}
