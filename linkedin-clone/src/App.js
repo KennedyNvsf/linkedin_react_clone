@@ -7,6 +7,15 @@ function App() {
   return (
     <div className="app">
       <h1>Building linkedin clone</h1>
+
+      {/*header*/}
+      
+      {/*App body*/}
+        {/*sidebar*/}
+        {/*Feed*/}
+        {/*Widgets*/}
+
+
     </div>
   );
 }
