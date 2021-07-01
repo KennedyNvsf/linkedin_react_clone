@@ -23,3 +23,17 @@
 @import "./globals";
 @import "../components/headerComponent/header.component";
 @import "../components/headerOptionsComponent/headerOption";
+@import "../components/sideBar/sidebar.style";
+
+
+.app{
+     background-color: #f3f2ef;
+     display:flex;
+     flex-direction: column;
+     align-items: center;
+}
+
+.appBody{
+
+    display: flex;
+}
