@@ -2,7 +2,7 @@ import React from 'react';
 import "./styles/app.scss"
 
 //COMPONENTS
-import HeaderComponent from './components/header.component';
+import HeaderComponent from './components/headerComponent/header.component';
 
 function App() {
   return (
