@@ -1,0 +1,46 @@
+
+
+
+.feedSection{
+
+    flex: 0.6;
+    margin: 0 20px;
+}
+
+.feedInput_container{
+
+   background-color: white;
+   padding: 10px;
+   border-radius: 10px;
+   padding-bottom: 20px;
+   margin-bottom: 20px;
+}
+
+.feedInput{
+
+    border: 1px solid lightgray;
+    border-radius: 30px;
+    display: flex;
+    padding: 10px;
+    padding-left: 15px;
+    color: gray;
+
+    form{
+        display: flex;
+        width: 100%;
+
+        input{
+
+            flex: 1;
+            border: none;
+            margin-left: 10px;
+            outline: 0;
+            font-weight: 600;
+        }
+
+        button{
+            
+            display: none;
+        }
+    }
+}

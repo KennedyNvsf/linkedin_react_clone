@@ -15,7 +15,7 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import HeaderOptionComponent from "../headerOptionsComponent/headerOption";
 
 
-const HeaderComponent = () => {
+const Header = () => {
 
     return (
 
@@ -48,4 +48,4 @@ const HeaderComponent = () => {
     )
 }
 
-export default HeaderComponent;
+export default Header;
