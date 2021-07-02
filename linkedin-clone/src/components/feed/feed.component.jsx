@@ -1,6 +1,9 @@
 
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import "../feed/_feed.style.scss";
+
+import firebase from "firebase"; //firebase
+import { db } from "../../firebase";
 
 //ICONS
 import CreateIcon from '@material-ui/icons/Create';
@@ -11,18 +14,50 @@ import CalendarViewDayIcon from '@material-ui/icons/CalendarViewDay';
 
 //COMPONENTS
 import InputOptions from "../inputOption/inputOption.commponent";
-import Posts from "../postsComponent/posts.component";
+import Post from "../postsComponent/posts.component";
+
+
+
 
 
 const Feed = () => {
 
+    const [input, setInput] = useState("");
     const [posts, setPosts] = useState([]);
 
-    const sendPost_handler = (event) => {
+    useEffect(() => {
 
-        event.preventDefault();
+        db.collection("posts").orderBy("timestamp", "desc").onSnapshot((snapshot) => 
 
-    }
+            setPosts(
+                snapshot.docs.map(doc => ({
+                    id: doc.id,
+                    data: doc.data(),
+                }))
+            )
+        );
+
+    }, []);
+   
+
+
+    const sendPost_handler = (e) => {
+
+        e.preventDefault();
+
+       db.collection('posts').add({
+
+            name: 'kennedy',
+            description: 'hoping that this works',
+            message: input,
+            photoUrl: "",
+            timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+
+       });
+
+       setInput("");
+
+    };
 
     return (
 
@@ -35,7 +70,7 @@ const Feed = () => {
 
                     <form>
                         
-                        <input type="text"/>
+                        <input value = {input} onChange = {e => setInput(e.target.value)} type="text"/>
                         <button onClick = {sendPost_handler} type = "submit">Send</button>
                     </form>
                 </div>
@@ -50,14 +85,22 @@ const Feed = () => {
                 </div>
             </div>
 
+
+            {posts.map(({id, data: {name, description, message, photoUrl } }) => (
+
+                <Post
+                    key={id}
+                    name={name}
+                    description={description}
+                    message={message}
+                    photoUrl={photoUrl}
+                />
+            ))}
+
+           {/* <Post name = "kennedy" description = "whats good fam" message = "this one works"/> */}
            
-           {posts.map((post) => (
-               <Posts/>
-           ))}
-
-            <Posts name = "Kennedy Freitas" description = "testing" message = "this is my linkedin clone" />
-
         </div>
+
     )
 }
 

@@ -14,7 +14,7 @@
 
 
 
-    const Posts = ({name, description, photoURL, message}) => {
+    const Post = ({name, description, photourl, message}) => {
 
        
 
@@ -48,4 +48,4 @@
         )
     }
 
-    export default Posts;
+    export default Post;
