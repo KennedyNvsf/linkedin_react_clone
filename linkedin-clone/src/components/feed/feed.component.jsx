@@ -1,5 +1,5 @@
 
-import React from "react";
+import React, {useState} from "react";
 import "../feed/_feed.style.scss";
 
 //ICONS
@@ -11,9 +11,18 @@ import CalendarViewDayIcon from '@material-ui/icons/CalendarViewDay';
 
 //COMPONENTS
 import InputOptions from "../inputOption/inputOption.commponent";
+import Posts from "../postsComponent/posts.component";
 
 
 const Feed = () => {
+
+    const [posts, setPosts] = useState([]);
+
+    const sendPost_handler = (event) => {
+
+        event.preventDefault();
+
+    }
 
     return (
 
@@ -27,7 +36,7 @@ const Feed = () => {
                     <form>
                         
                         <input type="text"/>
-                        <button type = "submit">Send</button>
+                        <button onClick = {sendPost_handler} type = "submit">Send</button>
                     </form>
                 </div>
 
@@ -40,6 +49,13 @@ const Feed = () => {
 
                 </div>
             </div>
+
+           
+           {posts.map((post) => (
+               <Posts/>
+           ))}
+
+            <Posts name = "Kennedy Freitas" description = "testing" message = "this is my linkedin clone" />
 
         </div>
     )
