@@ -2,7 +2,7 @@
 import React, {useEffect, useState} from "react";
 import "../feed/_feed.style.scss";
 
-import firebase from "firebase"; //firebase
+import firebase from "firebase"; //firebase to use the timestamp property
 import { db } from "../../firebase";
 
 //ICONS
@@ -22,14 +22,18 @@ import Post from "../postsComponent/posts.component";
 
 const Feed = () => {
 
-    const [input, setInput] = useState("");
-    const [posts, setPosts] = useState([]);
+    const [input, setInput] = useState("");//input state
+    const [posts, setPosts] = useState([]);//posts state
 
+    //Renders the components when the page loads
+    //if another post component is added it will only render that component and not all the components
+    //creating a collection for the posts.
     useEffect(() => {
 
         db.collection("posts").orderBy("timestamp", "desc").onSnapshot((snapshot) => 
 
             setPosts(
+
                 snapshot.docs.map(doc => ({
                     id: doc.id,
                     data: doc.data(),
@@ -49,13 +53,13 @@ const Feed = () => {
 
             name: 'kennedy',
             description: 'hoping that this works',
-            message: input,
+            message: input, //input state
             photoUrl: "",
             timestamp: firebase.firestore.FieldValue.serverTimestamp(),
 
        });
 
-       setInput("");
+       setInput("");//set the input to empty after submitting the post
 
     };
 
@@ -66,12 +70,15 @@ const Feed = () => {
             <div className="feedInput_container">
 
                 <div className="feedInput">
+
                     <CreateIcon/>
 
                     <form>
                         
                         <input value = {input} onChange = {e => setInput(e.target.value)} type="text"/>
+
                         <button onClick = {sendPost_handler} type = "submit">Send</button>
+
                     </form>
                 </div>
 
@@ -83,6 +90,7 @@ const Feed = () => {
                     <InputOptions Icon = {CalendarViewDayIcon} title = "Write article" color = "#FC9295"/>
 
                 </div>
+                
             </div>
 
 
@@ -97,7 +105,7 @@ const Feed = () => {
                 />
             ))}
 
-           {/* <Post name = "kennedy" description = "whats good fam" message = "this one works"/> */}
+          
            
         </div>
 
