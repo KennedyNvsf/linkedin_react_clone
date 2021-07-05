@@ -5,6 +5,9 @@ import "../feed/_feed.style.scss";
 import firebase from "firebase"; //firebase to use the timestamp property
 import { db } from "../../firebase";
 
+import { useSelector } from "react-redux";
+import { user_Selector } from "../../features/userSlice";
+
 //ICONS
 import CreateIcon from '@material-ui/icons/Create';
 import ImageIcon from '@material-ui/icons/Image';
@@ -16,11 +19,16 @@ import CalendarViewDayIcon from '@material-ui/icons/CalendarViewDay';
 import InputOptions from "../inputOption/inputOption.commponent";
 import Post from "../postsComponent/posts.component";
 
+//animation
+import FlipMove from "react-flip-move";
+
 
 
 
 
 const Feed = () => {
+
+    const user = useSelector(user_Selector);
 
     const [input, setInput] = useState("");//input state
     const [posts, setPosts] = useState([]);//posts state
@@ -51,10 +59,10 @@ const Feed = () => {
 
        db.collection('posts').add({
 
-            name: 'kennedy',
-            description: 'hoping that this works',
+            name: user.displayName,
+            description: user.email,
             message: input, //input state
-            photoUrl: "",
+            photoUrl: user.photoUrl || "",
             timestamp: firebase.firestore.FieldValue.serverTimestamp(),
 
        });
@@ -93,8 +101,9 @@ const Feed = () => {
                 
             </div>
 
+            <FlipMove>
 
-            {posts.map(({id, data: {name, description, message, photoUrl } }) => (
+                {posts.map(({id, data: {name, description, message, photoUrl } }) => (
 
                 <Post
                     key={id}
@@ -103,7 +112,9 @@ const Feed = () => {
                     message={message}
                     photoUrl={photoUrl}
                 />
-            ))}
+                ))}
+            </FlipMove>
+           
 
           
            

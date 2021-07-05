@@ -3,10 +3,14 @@
 import React from "react";
 import "../sideBar/_sidebar.style.scss";//styles
 import { Avatar } from "@material-ui/core";
+import { useSelector } from "react-redux";
+import { user_Selector } from "../../features/userSlice";
 
 
 
 const SideBar = () => {
+
+    const user = useSelector(user_Selector);
 
     const recentItem = (topic) => (
 
@@ -24,10 +28,10 @@ const SideBar = () => {
 
                 <img src="https://images.unsplash.com/photo-1579546929518-9e396f3cc809?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxleHBsb3JlLWZlWR8MXx8fGVufDB8fHw%3D&w=10000&q=80" alt="" />
 
-                <Avatar className = "sideBarAvatar"/>
+                <Avatar src = {user.photoUrl} className = "sideBarAvatar">{user.email[0]}</Avatar>
 
-                <h2>Kennedy Freitas</h2>
-                <h4>kennedynvsf@gmail.com</h4>
+                <h2>{user.displayName}</h2>
+                <h4>{user.email}</h4>
 
               
             </div>

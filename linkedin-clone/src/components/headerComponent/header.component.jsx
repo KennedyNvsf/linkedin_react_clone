@@ -2,6 +2,10 @@
 import React from "react";
 import "../headerComponent/_header.component.scss";//STYLES
 
+import { useDispatch } from "react-redux";
+import { auth } from "../../firebase";
+
+
 //IMPORTED ICONS
 import SearchIcon from '@material-ui/icons/Search';
 import HomeIcon from '@material-ui/icons/Home';
@@ -13,9 +17,21 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 
 //COMPONENTS
 import HeaderOptionComponent from "../headerOptionsComponent/headerOption";
+import { logout } from "../../features/userSlice";
 
 
 const Header = () => {
+
+    
+
+    const dispatch = useDispatch();
+
+    const LogOutApp = () => {
+
+        dispatch(logout());
+        auth.signOut();
+
+    }
 
     return (
 
@@ -41,7 +57,7 @@ const Header = () => {
                 <HeaderOptionComponent Icon = {BusinessCenterIcon} title ="Jobs"/>
                 <HeaderOptionComponent Icon = {ChatIcon} title ="Messaging"/>
                 <HeaderOptionComponent Icon = {NotificationsIcon} title ="Notifications"/>
-                <HeaderOptionComponent avatar = "https://avatars.githubusercontent.com/u/45067556?v=4" title = "Me"/>
+                <HeaderOptionComponent avatar = {true} title = "Me" onClick={LogOutApp}/>
 
             </div>
         </div>

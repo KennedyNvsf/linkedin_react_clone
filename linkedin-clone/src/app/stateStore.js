@@ -3,7 +3,7 @@ import userReducer from '../features/userSlice';//created reducer
 
 
 //state | reducer store
-export const store = configureStore({
+export const stateStore = configureStore({
 
   reducer: {
     user: userReducer,

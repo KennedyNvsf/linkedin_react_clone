@@ -1,6 +1,9 @@
 
-    import React from "react";
+    import React, {forwardRef} from "react";
     import "../postsComponent/_posts.style.scss";//styles
+
+    // import { useSelector } from "react-redux";
+    // import { user_Selector } from "../../features/userSlice";
 
     //icons
     import { Avatar } from "@material-ui/core";
@@ -14,16 +17,17 @@
 
 
 
-    const Post = ({name, description, photourl, message}) => {
+    const Post = forwardRef(({name, description, message, photoUrl}, ref) => {
 
-       
+        // const user = useSelector(user_Selector);
 
         return (
 
-            <div className = "postContainer">
+            <div ref={ref} className = "postContainer">
 
                 <div className="postHeader">
-                    <Avatar/>
+
+                    <Avatar src={photoUrl}>{name[0]}</Avatar>
 
                     <div className="postInfo">
                         <h2>{name}</h2>
@@ -46,6 +50,6 @@
 
             </div>
         )
-    }
+    })
 
     export default Post;
